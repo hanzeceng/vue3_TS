@@ -19,3 +19,5 @@ setupStore()
 app.use(router)
 
 app.mount('#app')
+
+console.log('dsfds')
