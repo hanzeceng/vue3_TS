@@ -1,6 +1,6 @@
 <template>
-  <div class="list">
-    <h2>list</h2>
+  <div>
+    <h2>Main</h2>
   </div>
 </template>
 
@@ -8,7 +8,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'list',
   setup() {
     return {}
   }
