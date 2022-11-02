@@ -1,7 +1,7 @@
 module.exports = {
   // 1.配置方式一: CLI提供的属性
   outputDir: './build',
-  // publicPath: './',
+  publicPath: './',
   devServer: {
     proxy: {
       '^/api': {
@@ -15,6 +15,15 @@ module.exports = {
   },
   // 2.配置方式二: 和webpack属性完全一致, 最后会进行合并
   configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto'
+        }
+      ]
+    },
     resolve: {
       alias: {
         components: '@/components'
