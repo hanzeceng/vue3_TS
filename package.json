@@ -18,7 +18,7 @@
     "echarts": "^5.1.2",
     "element-plus": "^2.2.19",
     "normalize.css": "^8.0.1",
-    "vue": "^3.2.4",
+    "vue": "^3.2.36",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
   },

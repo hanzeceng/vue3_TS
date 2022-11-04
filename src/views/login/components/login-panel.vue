@@ -1,8 +1,8 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" stretch v-model="currentTab">
+      <el-tab-pane name="account">
         <template #label>
           <span class="icon-text">
             <el-icon><UserFilled /></el-icon>
@@ -11,7 +11,7 @@
         </template>
         <login-account ref="accountRef" />
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <el-icon><Iphone /></el-icon>
           手机登陆
@@ -42,17 +42,24 @@ export default defineComponent({
     LoginPhone
   },
   setup() {
+    // 1.定义属性
     const isKeepPassword = ref(false)
-
+    // typeof 可以检测当前对象的类型
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
+    const currentTab = ref<string>('account')
+    // 2.定义方法
     const handleLoginClick = (): void => {
-      console.log('点击登陆', accountRef.value)
-      // 类型限制的情况下要加上可选链的语法
-      accountRef.value?.loginAction()
+      if (currentTab.value === 'account') {
+        // 类型限制的情况下要加上可选链的语法
+        accountRef.value?.loginAction(isKeepPassword.value)
+      } else {
+        console.log('调用手机号登陆的方法')
+      }
     }
     return {
       isKeepPassword,
       accountRef,
+      currentTab,
       handleLoginClick
     }
   }

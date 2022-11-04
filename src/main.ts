@@ -4,31 +4,17 @@ import 'normalize.css'
 import './assets//css/index.less'
 
 import rootApp from './App.vue'
-import hyRequest from './service'
 
 import router from './router/index'
 import store from './store/index'
+import { setupStore } from './store/index'
 
 const app: App = createApp(rootApp)
 
 app.use(router)
 app.use(store)
+// 解决每一次刷新的时候vuex里面的token丢失的问题
+setupStore()
 globalRegister(app)
 
 app.mount('#app')
-
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
-hyRequest
-  .get<DataType>({
-    url: '/home/multidata',
-    showLoading: false
-  })
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
